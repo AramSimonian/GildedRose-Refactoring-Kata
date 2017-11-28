@@ -39,10 +39,16 @@ describe GildedRose do
 
     describe "#Backstage passes" do
       it "backstage passes sell_in reduces by 1" do
-        items = [Item.new(name="Aged Brie", sell_in=2, quality=0)]
+        items = [Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=2, quality=0)]
         gilded_rose.set_items(items)
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].sell_in).to eq 1
+      end
+      it "backstage passes quality increases by 1 with sell_in > 10" do
+        items = [Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=11, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 1
       end
     end
   end
