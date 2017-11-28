@@ -9,17 +9,26 @@ describe GildedRose do
       gilded_rose.update_quality()
       expect(gilded_rose::items[0].name).to eq "foo"
     end
-    it "aged brie sell_in reduces by 1" do
-      items = [Item.new(name="Aged Brie", sell_in=2, quality=0)]
-      gilded_rose.set_items(items)
-      gilded_rose.update_quality()
-      expect(gilded_rose::items[0].sell_in).to eq 1
-    end
-    it "aged brie quality increases by 2 with sell_in > 0" do
-      items = [Item.new(name="Aged Brie", sell_in=0, quality=0)]
-      gilded_rose.set_items(items)
-      gilded_rose.update_quality()
-      expect(gilded_rose::items[0].quality).to eq 2
+
+    describe "#Aged brie" do
+      it "aged brie sell_in reduces by 1" do
+        items = [Item.new(name="Aged Brie", sell_in=2, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].sell_in).to eq 1
+      end
+      it "aged brie quality increases by 1 with sell_in > 0" do
+        items = [Item.new(name="Aged Brie", sell_in=2, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 1
+      end
+      it "aged brie quality increases by 2 with sell_in = 0" do
+        items = [Item.new(name="Aged Brie", sell_in=0, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 2
+      end
     end
   end
 
