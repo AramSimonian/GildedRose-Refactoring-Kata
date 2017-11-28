@@ -29,7 +29,14 @@ describe GildedRose do
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 2
       end
+      it "aged brie quality can't go above 50" do
+        items = [Item.new(name="Aged Brie", sell_in=2, quality=50)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 50
+      end
     end
+
   end
 
 end
