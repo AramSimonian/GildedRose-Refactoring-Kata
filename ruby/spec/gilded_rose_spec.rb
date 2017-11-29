@@ -87,6 +87,15 @@ describe GildedRose do
         expect(gilded_rose::items[0].quality).to eq 0
       end
     end
-  end
 
+    describe "#Elixir of the Mongoose" do
+      item_name = "Elixir of the Mongoose"
+      it "Elixir sell_in reduces by 1" do
+        items = [Item.new(name=item_name, sell_in=2, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].sell_in).to eq 1
+      end
+    end
+  end
 end
