@@ -58,11 +58,17 @@ describe GildedRose do
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 1
       end
-      it "backstage passes quality increases by 1 with sell_in < 11 & > 5" do
+      it "backstage passes quality increases by 2 with sell_in < 11 & > 5" do
         items = [Item.new(name=item_name, sell_in=10, quality=0)]
         gilded_rose.set_items(items)
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 2
+      end
+      it "backstage passes quality increases by 3 with sell_in <= 5" do
+        items = [Item.new(name=item_name, sell_in=5, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 3
       end
       it "backstage passes quality can't go above 50" do
         items = [Item.new(name=item_name, sell_in=2, quality=50)]
