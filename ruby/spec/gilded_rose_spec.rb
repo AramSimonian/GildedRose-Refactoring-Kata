@@ -70,6 +70,12 @@ describe GildedRose do
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 3
       end
+      it "backstage passes quality goes to zero with sell_in < 0" do
+        items = [Item.new(name=item_name, sell_in=0, quality=10)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 0
+      end
       it "backstage passes quality can't go above 50" do
         items = [Item.new(name=item_name, sell_in=2, quality=50)]
         gilded_rose.set_items(items)
