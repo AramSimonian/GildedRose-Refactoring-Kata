@@ -115,5 +115,33 @@ describe GildedRose do
         expect(gilded_rose::items[0].quality).to eq 1
       end
     end
+
+    describe "#+5 Dexterity Vest" do
+      item_name = "+5 Dexterity Vest"
+      it "Dexterity Vest sell_in reduces by 1" do
+        items = [Item.new(name=item_name, sell_in=2, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].sell_in).to eq 1
+      end
+      it "Dexterity Vest quality decreases by 1 with sell_in > 0" do
+        items = [Item.new(name=item_name, sell_in=11, quality=1)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 0
+      end
+      it "Dexterity Vest quality decreases by 1 with sell_in = 0" do
+        items = [Item.new(name=item_name, sell_in=10, quality=2)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 1
+      end
+      it "Dexterity Vest quality decreases by 2 with sell_in < 0" do
+        items = [Item.new(name=item_name, sell_in=10, quality=2)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 1
+      end
+    end
   end
 end
