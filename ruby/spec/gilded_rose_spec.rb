@@ -58,7 +58,14 @@ describe GildedRose do
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 2
       end
+      it "backstage passes quality can't go above 50" do
+        items = [Item.new(name=item_name, sell_in=2, quality=50)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 50
+      end
     end
+
     describe "#Sulfuras" do
       item_name = "Sulfuras, Hand of Ragnaros"
       it "Sulfuras sell_in doesn't reduce" do
