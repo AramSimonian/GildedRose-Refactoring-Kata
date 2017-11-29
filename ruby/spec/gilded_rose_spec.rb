@@ -50,6 +50,12 @@ describe GildedRose do
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 1
       end
+      it "backstage passes quality increases by 1 with sell_in < 11 & > 5" do
+        items = [Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=0)]
+        gilded_rose.set_items(items)
+        gilded_rose.update_quality()
+        expect(gilded_rose::items[0].quality).to eq 2
+      end
     end
   end
 
