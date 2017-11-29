@@ -30,8 +30,8 @@ describe GildedRose do
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 2
       end
-      it "aged brie quality increases by 2 with sell_in > 0" do
-        items = [Item.new(name=item_name, sell_in=0, quality=0)]
+      it "aged brie quality increases by 2 with sell_in < 0" do
+        items = [Item.new(name=item_name, sell_in= -1, quality=0)]
         gilded_rose.set_items(items)
         gilded_rose.update_quality()
         expect(gilded_rose::items[0].quality).to eq 2
